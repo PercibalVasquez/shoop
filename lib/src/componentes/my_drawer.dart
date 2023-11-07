@@ -46,7 +46,11 @@ class MyDrawer extends StatelessWidget {
           // Exit shop
           Padding(
             padding: const EdgeInsets.only(bottom: 25.0),
-            child: MyListTitle(text: 'Salir', icon: Icons.logout, onTap: () {}),
+            child: MyListTitle(
+                text: 'Salir',
+                icon: Icons.logout,
+                onTap: () => Navigator.pushNamedAndRemoveUntil(
+                    context, '/intro_page', (route) => false)),
           ),
         ],
       ),
