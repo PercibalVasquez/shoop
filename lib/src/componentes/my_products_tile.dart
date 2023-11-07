@@ -7,33 +7,39 @@ class MyProductTitle extends StatelessWidget {
   final Productos product;
   const MyProductTitle({super.key, required this.product});
 
-  //boton para agregar al precionar al carro
-  void addToCard(BuildContext context){
-    //al agregar al carrito mostrar un cuadro de dialogo para preguntar si desea agregar
-    showDialog(context: context, builder: (context)=>  AlertDialog(
-      content:  Text("Desea agregar este item a su carrito"),
-      actions: [
-        // boton cancelar
-        MaterialButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text("Cancelar"),
-           ),
-        //boton si
+  // TODO: Clase para mostrar el título y detalles del producto.
+
+  void addToCard(BuildContext context) {
+    // TODO: Método para agregar un producto al carrito y mostrar un cuadro de diálogo.
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text("¿Desea agregar este item a su carrito?"),
+        actions: [
+          // TODO: Cuadro de diálogo de confirmación.
           MaterialButton(
-          onPressed: ()  {
-          //pop  caja de dialogo
-          Navigator.pop(context);
-          //añadir al carrito
-          context.read<Shop>().addToCart(product);
-          },
-          child: Text("Confirmar"),
-           ),
-      ],
-    ));
+            onPressed: () => Navigator.pop(context),
+            child: Text("Cancelar"),
+          ),
+          MaterialButton(
+            onPressed: () {
+              // TODO: Cerrar el cuadro de diálogo.
+              Navigator.pop(context);
+              // TODO: Agregar el producto al carrito utilizando Provider.
+              context.read<Shop>().addToCart(product);
+            },
+            child: Text("Confirmar"),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Método para construir la interfaz de usuario del producto.
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -46,13 +52,13 @@ class MyProductTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //imagen de producto
           Column(
             children: [
               AspectRatio(
                 aspectRatio: 1,
                 child: Container(
                   decoration: BoxDecoration(
+                    // TODO: Decoración para la imagen del producto.
                     color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -62,7 +68,6 @@ class MyProductTitle extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 25),
-              //nombre de producto
               Text(
                 product.name,
                 style: const TextStyle(
@@ -70,25 +75,32 @@ class MyProductTitle extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              //descripcion del producto
+              // TODO: Agregar descripción del producto.
               const SizedBox(height: 10),
               Text(
                 product.description,
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
               ),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //producto precio
+              // TODO: Agregar precio del producto.
               Text('\$' + product.price.toStringAsFixed(2)),
-              //añadir al carrito boton
+              // TODO: Agregar botón para añadir al carrito.
               Container(
-                decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(12)),
-                  child: IconButton(
-                      onPressed: () => addToCard(context), icon: const Icon(Icons.add))),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: IconButton(
+                  onPressed: () => addToCard(context),
+                  icon: const Icon(Icons.add),
+                ),
+              ),
             ],
           ),
         ],
